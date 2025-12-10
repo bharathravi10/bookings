@@ -1,0 +1,41 @@
+// Prisma Schema - Production Ready with Indexes
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@map("users")
+}
+
+model Booking {
+  id        String   @id @default(uuid())
+  name      String
+  address   String
+  city      String
+  mobile    String
+  vehicleNo String
+  status    Int      @default(1) // 1: New, 2: FollowUp, 3: Cancelled, 4: Completed
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([city])
+  @@index([vehicleNo])
+  @@map("bookings")
+}

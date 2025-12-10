@@ -1,0 +1,6 @@
+DATABASE_URL="mysql://username:password@localhost:3306/bookings_db"
+JWT_SECRET="your-super-secret-jwt-key-change-this-in-production-min-32-chars"
+JWT_EXPIRES_IN="7d"
+PORT=3001
+NODE_ENV=development
+
